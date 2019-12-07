@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import './map.dart';
 
 class Complete extends StatelessWidget {
-  final String title;
 
-  Complete(this.title);
+  Complete();
 
   @override
   Widget build(BuildContext context) {
