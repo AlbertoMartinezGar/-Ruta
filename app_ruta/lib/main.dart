@@ -8,9 +8,13 @@ class MyApp extends StatelessWidget {
   String title = '+Rutas';                         // new
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(                             // updated
-        title: title,                                   // new
-        home: new HomePage(title),                      // new
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Image from assets"),
+        ),
+        body: Image.asset('assets/images/lake.jpg'), //   <-- image
+      ),
     );
   }
 }
