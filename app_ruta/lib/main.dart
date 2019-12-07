@@ -14,7 +14,11 @@ class MyApp extends StatelessWidget {
         title: title,                                   // new
         home: new HomePage(title),                      // new
         //home: new Complete(title), 
+<<<<<<< HEAD
         //home: new Alert(title),
+=======
+        home: new Alert(title),
+>>>>>>> master
     );
   }
 }
