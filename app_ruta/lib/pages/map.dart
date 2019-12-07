@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+  String searchAddr;
+
 class Map extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,19 +37,53 @@ class MapSampleState extends State<MapSample> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
-      ),
-    );
+      body: Stack(
+      children: <Widget>[
+        Container(
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              )
+              //height: MediaQuery.of(context).size.height - (((MediaQuery.of(context).size.height)/3)*2),
+            ),
+      Positioned(
+          top: 50.0,
+          right: 15.0,
+          left: 15.0,
+          child: Container(
+            height: 50.0,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0), color: Colors.white),
+            child: TextField(
+              decoration: InputDecoration(
+                  hintText: 'Buscar...',
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(left: 15.0, top: 15.0),
+                  suffixIcon: IconButton(
+                      icon: Icon(Icons.search),
+                      //onPressed: searchandNavigate,
+                      iconSize: 30.0)),
+              onChanged: (val) {
+                setState(() {
+                  searchAddr = val;
+                });
+              },
+            ),
+          ),
+        ),
+      ],
+      
+    ), 
+    floatingActionButton: FloatingActionButton.extended(
+      onPressed: _goToTheLake,
+      label: Text(''),
+      icon: Icon(Icons.my_location),
+    ),
+  );
   }
 
   Future<void> _goToTheLake() async {
@@ -55,3 +91,5 @@ class MapSampleState extends State<MapSample> {
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }
+
+
