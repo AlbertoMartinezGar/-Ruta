@@ -3,13 +3,64 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 void main() => runApp(MyApp());
+
+/*class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  static const LatLng _center = const LatLng(45.521563, -122.677433);
+  //static final CameraPosition _myLocation = CameraPosition(target: LatLng(0, 0),);
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Maps Sample App'),
+          backgroundColor: Colors.green[700],
+        ),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 11.0,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // 1
+      body: GoogleMap(
+      // 2
+      initialCameraPosition: _myLocation,
+      // 3
+      mapType: MapType.normal,
+      // 4
+      onMapCreated: (GoogleMapController controller) {
+        _controller.complete(controller);},
+      ),
+    );
+  }
+
+}*/
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( 
+    return MaterialApp(
       title: 'Flutter Google Maps Demo',
       home: MapSample(),
     );
@@ -39,7 +90,7 @@ class MapSampleState extends State<MapSample> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
@@ -47,7 +98,7 @@ class MapSampleState extends State<MapSample> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _goToTheLake,
-        label: Text('lake!'),
+        label: Text('To the lake!'),
         icon: Icon(Icons.directions_boat),
       ),
     );
