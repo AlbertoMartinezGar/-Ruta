@@ -1,0 +1,4 @@
+[submodule "genetic"]
+	url = https://gist.github.com/ximecediaz/f1f6023d279d5c03237336833cca2eb2
+[submodule "Astar"]
+	url = https://gist.github.com/ximecediaz/c2178cf3ac36e2b84ddf9a1855def1eb
